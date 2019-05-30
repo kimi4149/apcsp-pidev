@@ -1,34 +1,68 @@
 #include <stdio.h>
 #include <math.h>
-float areaofcircle (float a)
+
+  float areaofcircle(float r)
 {
-	float x;
-	x= 3.14*a*a;
-	printf("%f\n", x);
-	return x;
+  float area = 3.14 * r * r;
+  return area; 
 }
-int main() 
+
+  float radiusminimum()
 {
-  char input[256];
- float  range1;
- float range2;
- printf("What is the lower value of your range for the radius?\n");
- while(1)
-{
-	fgets(input, 256, stdin);
-	if (sscanf(input, "%f", &range1) == 1) break;
-	printf("Not a valid value, please try again\n");
+    float radiusmin;
+    char input [256];
+    int correct = 0;
+
+  while (correct == 0)
+    {
+    printf("What is the minimum radius of the circle? \n");
+    fgets(input, 256, stdin);
+    correct = sscanf(input, "%f", &radiusmin);
+    }
+   
+  if (correct != 1)
+    {
+    printf("Enter a number\n");
+    }
+  return radiusmin;
 }
-printf("What is the upper value of your range for the radius?\n");
-while (1)
+
+float radiusmaximum()
 {
-	fgets(input, 256, stdin);
-	if (sscanf(input, "%f", &range2) == 1) break;
-	printf("Not a valid value, please try again\n");
+    float radiusmax;
+    char input2 [256];
+    int correct2 = 0;
+
+  while (correct2 == 0)
+    {
+    printf("What is the maximum radius of the circle? \n");
+    fgets(input2, 256, stdin);
+    correct2 =  sscanf(input2, "%f", &radiusmax);
+    }
+   
+  if (correct2 != 1)
+    {
+    printf("Enter a number\n"); 
+    }
+  return radiusmax;
 }
-float a;
-for (a=range1; a < range2+1; a++)
+
+ int main()
 {
-	areaofcircle(a);
+  float rmin = radiusminimum();
+  float rmax = radiusmaximum();
+  
+  if (rmax <= rmin)
+{
+  printf("The value of the minimum radius must be less than the value of the maximum radius.\n");
+  printf("What is the minimum radius of the circle?\n");
+  scanf("%f", &rmax);
 }
+
+  for (float i = rmin; i <=rmax; i++)
+  {
+    float a = areaofcircle(i);
+    printf("area = %f\n", a); 
+  }
+
 }
